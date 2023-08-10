@@ -140,6 +140,14 @@ main {
 .nav-item a:hover{
   color:violet;
 }
+.brush input,.eraser input{
+  margin:5% 10%;
+  padding:0 10px;
+  display: none;
+}
+.brush:hover input,.eraser:hover input{
+  display:initial
+}
 .purple{
   fill:violet;
 }

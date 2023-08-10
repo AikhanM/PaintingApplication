@@ -13,13 +13,18 @@ class View {
         this.red = document.querySelector(".red");
         this.green = document.querySelector(".green");
         this.blue = document.querySelector(".blue");
-
+        this.brushSize=document.querySelector("#brush-size")
+        this.eraserSize=document.querySelector("#eraser-size")
         this.prevMouseX = 0;
         this.prevMouseY = 0;
         this.ctx.lineWidth=5
+        this.brush.addEventListener("click",()=>this.changeBrushSize())
+        this.eraser.addEventListener("click",()=>this.changeEraserSize())
         this.square.addEventListener("click", ()=>this.drawSquare());
-        this.brush.addEventListener("click",  this.drawLine());
+        this.brush.addEventListener("click", ()=>this.drawLine());
+        this.circle.addEventListener("click",()=>this.drawCircle())
         this.eraser.addEventListener("click", () => this.useEraser());
+        this.brush.addEventListener("click",()=>this.changeColor(this.selectedColor))
         this.black.addEventListener("click", () => this.changeColor("#000"));
         this.yellow.addEventListener("click", () => this.changeColor("#ff0"));
         this.red.addEventListener("click", () => this.changeColor("#f00"));
@@ -32,19 +37,40 @@ class View {
         this.ctx.strokeStyle = color;
     }
 
-
-    useEraser(){
-        this.ctx.strokeStyle="#fff"
-        this.ctx.lineWidth=5
+ 
+    changeBrushSize(){ 
+        this.ctx.lineWidth=this.brushSize.value
     }
 
-    drawSquare() {
+    changeEraserSize(){
+        this.ctx.lineWidth=this.eraserSize.value
     }
+  
 
-    drawCircle(xpos, ypos, radius, color) {
+    useEraser(prevMouseX,prevMouseY,nextMouseX,nextMouseY){
         this.ctx.beginPath();
-        this.ctx.arc(xpos, ypos, radius, 0, 2 * Math.PI);
-        this.ctx.strokeStyle = color;
+        this.ctx.lineWidth=this.selectedSize
+        this.ctx.strokeStyle="#fff"
+        this.ctx.moveTo(prevMouseX, prevMouseY);
+        this.ctx.lineTo(nextMouseX, nextMouseY);
+        this.ctx.strokeStyle=this.color
+        this.ctx.stroke();
+        this.ctx.closePath();
+    }
+
+    drawSquare(prevMouseX,prevMouseY,nextMouseX,nextMouseY){
+        this.ctx.beginPath()
+        this.ctx.rect(prevMouseX,prevMouseY,prevMouseX-nextMouseX,prevMouseY-nextMouseY)
+        this.ctx.stroke()
+    }
+
+   
+
+    drawCircle(prevMouseX, prevMouseY, radius, selectedColor) {
+
+        this.ctx.beginPath();
+        this.ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI,selectedColor);
+        
         this.ctx.stroke();
         this.ctx.closePath();
     }
@@ -53,6 +79,7 @@ class View {
     drawLine(prevMouseX, prevMouseY, nextMouseX, nextMouseY) {
     
         this.ctx.beginPath();
+        this.ctx.lineWidth=this.selectedSize
         this.ctx.moveTo(prevMouseX, prevMouseY);
         this.ctx.lineTo(nextMouseX, nextMouseY);
         this.ctx.strokeStyle=this.color
@@ -60,9 +87,9 @@ class View {
         this.ctx.closePath();
     }
 
-    selectColor(color) {
-        this.selectedColor = color;
-    }
+
+
+ 
    
 }
 class Model {
@@ -105,12 +132,14 @@ class Model {
         if (!this.isPainting) return;
         const nextMouseX = e.offsetX;
         const nextMouseY = e.offsetY;
+        
         this.view.drawLine(
             this.prevMouseX,
             this.prevMouseY,
             nextMouseX,
             nextMouseY
         );
+        
         this.prevMouseX = nextMouseX;
         this.prevMouseY = nextMouseY;
     }
@@ -136,9 +165,7 @@ class Model {
         if (!this.isPainting) return;
         const nextMouseX = e.offsetX;
         const nextMouseY = e.offsetY;
-        this.view.ctx.clearRect(0, 0, this.view.canvas.width, this.view.canvas.height); // Önceki çizimi temizle
-        this.view.ctx.fillStyle = this.view.selectedColor;
-        this.view.ctx.fillRect(this.prevMouseX, this.prevMouseY, nextMouseX - this.prevMouseX, nextMouseY - this.prevMouseY);
+        this.view.ctx.stroke(this.prevMouseX, this.prevMouseY, nextMouseX - this.prevMouseX, nextMouseY - this.prevMouseY);
     }
 }
 
