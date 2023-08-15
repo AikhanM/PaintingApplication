@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Drawing App JavaScript | CodingNepal</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-nav tool-bar purple">
+        <li class="logo">
+          <a href="#" class="nav-link">
+            <span class="link-text logo-text">Tool Bar</span>
+            <svg class="purple"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fad"
+              data-icon="angle-double-right"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+            >
+              <g class="fa-group">
+                <path
+                  fill="currentColor"
+                  d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                  class="fa-secondary"
+                ></path>
+                <path
+                  fill="currentColor"
+                  d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                  class="fa-primary"
+                ></path>
+              </g>
+            </svg>
+          </a>
+        </li>
+
+        <li class="nav-item purple square">
+          <a href="#" class="nav-link">
+            <svg class="purple "
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 448 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+             
+              <path
+                d="M0 96C0 60.7 28.7 32 64 32H384c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96z"
+              />
+            </svg>
+            <span class="link-text">Square</span>
+          </a>
+        </li>
+
+        <li class="nav-item purple circle">
+          <a href="#" class="nav-link">
+            <svg class="purple"
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+            </svg>
+            <span class="link-text">Circle</span>
+          </a>
+        </li>
+
+        <li class="nav-item purple brush">
+          <a href="#" class="nav-link">
+            <svg class="purple"
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 384 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M162.4 6c-1.5-3.6-5-6-8.9-6h-19c-3.9 0-7.5 2.4-8.9 6L104.9 57.7c-3.2 8-14.6 8-17.8 0L66.4 6c-1.5-3.6-5-6-8.9-6H48C21.5 0 0 21.5 0 48V224v22.4V256H9.6 374.4 384v-9.6V224 48c0-26.5-21.5-48-48-48H230.5c-3.9 0-7.5 2.4-8.9 6L200.9 57.7c-3.2 8-14.6 8-17.8 0L162.4 6zM0 288v32c0 35.3 28.7 64 64 64h64v64c0 35.3 28.7 64 64 64s64-28.7 64-64V384h64c35.3 0 64-28.7 64-64V288H0zM192 432a16 16 0 1 1 0 32 16 16 0 1 1 0-32z"
+              />
+            </svg>
+            <span class="link-text">Brush</span>
+          </a>
+          <div class="brush-option">
+            <input type="range" id="brush-size" min="1" max="50" value="5">
+          </div>
+        </li>
+
+        <li class="nav-item purple eraser">
+          <a href="#" class="nav-link">
+            <svg class="purple"
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 576 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path
+                d="M290.7 57.4L57.4 290.7c-25 25-25 65.5 0 90.5l80 80c12 12 28.3 18.7 45.3 18.7H288h9.4H512c17.7 0 32-14.3 32-32s-14.3-32-32-32H387.9L518.6 285.3c25-25 25-65.5 0-90.5L381.3 57.4c-25-25-65.5-25-90.5 0zM297.4 416H288l-105.4 0-80-80L227.3 211.3 364.7 348.7 297.4 416z"
+              />
+            </svg>
+            <span class="link-text">Eraser</span>
+          </a>
+          <div class="eraser-option">
+            <input type="range" id="eraser-size" min="1" max="30" value="5">
+          </div>
+        </li>
+        
+        <li class="logo ">
+          <a href="#" class="nav-link">
+            <span class="link-text logo-text">Colors</span>
+            <svg class="purple"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fad"
+              data-icon="angle-double-right"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+            >
+              <g class="fa-group">
+                <path
+                  fill="currentColor"
+                  d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                  class="fa-secondary"
+                ></path>
+                <path
+                  fill="currentColor"
+                  d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                  class="fa-primary"
+                ></path>
+              </g>
+            </svg>
+          </a>
+        </li>
+
+        <li class="nav-item black " data-color="black">
+          <a href="#" class="nav-link">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+            </svg>
+            <span class="link-text">Black</span>
+          </a>
+        </li>
+
+        <li class="nav-item yellow" data-color="yellow">
+          <a href="#" class="nav-link">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+            </svg>
+            <span class="link-text">Yellow</span>
+          </a>
+        </li>
+
+        <li class="nav-item  red" data-color="red">
+          <a href="#" class="nav-link">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+            </svg>
+            <span class="link-text">Red</span>
+          </a>
+        </li>
+
+        <li class="nav-item green " data-color="green">
+          <a href="#" class="nav-link">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+            </svg>
+            <span class="link-text">Green</span>
+          </a>
+        </li>
+
+        <li class="nav-item blue " data-color="blue">
+          <a href="#" class="nav-link">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              viewBox="0 0 512 512"
+            >
+              <!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" />
+            </svg>
+            <span class="link-text">Blue</span>
+          </a>
+        </li>
+      </ul>
+
+      
+
+    </nav>
+
+    <canvas></canvas>
+
+    <script src="src/index.js" type="module"></script>
+  </body>
+</html>
