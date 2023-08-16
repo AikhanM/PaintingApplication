@@ -8,6 +8,11 @@ export default class controller {
             this.model.changeBrushSize(brushSizeValue);
         });
 
+        this.view.listenEraserSizeChange(() => {
+            const eraserSizeValue = this.view.EraserSizeValue;
+            this.model.changeEraserSize(eraserSizeValue);
+        });
+
         this.view.listenerStartDrawing((e) => {
             this.model.startPath(e, this.view.ctx);
         });
@@ -22,10 +27,8 @@ export default class controller {
             this.model.stopPath(this.view.ctx);
         });
 
-        this.view.listenerUseEraser((e) => {
-            if (this.model.isPainting) {
-                this.model.useEraser(e, this.view.ctx);
-            }
+        this.view.listenerUseEraser((color) => {
+           this.model.setColor(color)
         });
 
         this.view.listenColorSelect((color) => {

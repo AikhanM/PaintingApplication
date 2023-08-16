@@ -8,25 +8,24 @@ export default class view {
         this.circle = document.querySelector(".circle");
         this.brush = document.querySelector(".brush");
         this.eraser = document.querySelector(".eraser");
-        this.black = document.querySelector(".black");
-        this.yellow = document.querySelector(".yellow");
-        this.red = document.querySelector(".red");
-        this.green = document.querySelector(".green");
-        this.blue = document.querySelector(".blue");
+        
         this.brushSize = document.querySelector("#brush-size");
         this.eraserSize = document.querySelector("#eraser-size");
         this.colors = document.querySelectorAll(".color");
-        this.colorsContainer = document.querySelector(".nav-item");
+        
+        this.colorsContainer = document.querySelectorAll(".nav-item");
         this.prevMouseX = 0;
         this.prevMouseY = 0;
         this.ctx.lineWidth = 5;
-        this.selectedColor = "#000";
+      
     }
 
     listenerUseEraser(callback) {
         this.eraser.addEventListener("click", (e) => {
-            callback(e);
-        });
+            const colorValue ="#fff";
+            callback(colorValue);
+            
+        }); 
     }
 
     listenerStartDrawing(callback) {
@@ -46,25 +45,27 @@ export default class view {
     }
 
     listenColorSelect(callback) {
-        this.colorsContainer.addEventListener("click", (e) => {
-            if (e.target.classList.contains("color")) {
-                const colorValue = e.target.dataset.color;
-                callback(colorValue); // Renk değerini Model'e iletmek için callback'i çağırıyoruz
-            }
+        this.colors.forEach((colorOption) => {
+            colorOption.addEventListener("click", (e) => {
+                const colorValue = colorOption.dataset.color;
+                callback(colorValue);
+                console.log(colorValue);
+            });
         });
     }
     
     listenBrushSizeChange(callback){
         this.brushSize.addEventListener("change",callback)
-      }
+    }
     
+    listenEraserSizeChange(callback){
+        this.eraserSize.addEventListener("change",callback)
+    }
+
     get BrushSizeValue(){
       return this.brushSize.value
     }
     get EraserSizeValue(){
       return this.eraserSize.value
     }
-
-  
-
 }
