@@ -16,7 +16,6 @@ export default class View {
         this.prevMouseY = 0;
         this.ctx.lineWidth = 5;
         this.prevColor="#000"
-   
     }
     listenerUseEraser(callback,color) {
         this.eraser.addEventListener("click", () => {

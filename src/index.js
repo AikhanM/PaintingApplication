@@ -10,6 +10,4 @@ window.addEventListener("DOMContentLoaded",()=>{
     controller.init()
 })
 
-const view = new View();
-const model = new Model();
-const controller = new Controller(view, model);
+window.addEventListener("DOMContentLoaded",initialize)

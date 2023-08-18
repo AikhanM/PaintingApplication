@@ -6,7 +6,6 @@ export default class Model {
         this.color = "#000";
         this.prevColor="#000"
         this.lineWidth = 5;
-   
     }
 
     startPath(e, ctx) {
@@ -60,5 +59,4 @@ export default class Model {
         this.lineWidth=data
         return this.lineWidth
     }
-  
 }
