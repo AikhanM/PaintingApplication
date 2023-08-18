@@ -1,4 +1,4 @@
-export default class view {
+export default class View {
     constructor() {
         this.canvas = document.querySelector("canvas");
         this.canvas.width = window.innerWidth;
@@ -8,25 +8,29 @@ export default class view {
         this.circle = document.querySelector(".circle");
         this.brush = document.querySelector(".brush");
         this.eraser = document.querySelector(".eraser");
-        
         this.brushSize = document.querySelector("#brush-size");
         this.eraserSize = document.querySelector("#eraser-size");
         this.colors = document.querySelectorAll(".color");
-        
         this.colorsContainer = document.querySelectorAll(".nav-item");
         this.prevMouseX = 0;
         this.prevMouseY = 0;
         this.ctx.lineWidth = 5;
-      
+        this.prevColor="#000"
+   
+    }
+    listenerUseEraser(callback,color) {
+        this.eraser.addEventListener("click", () => {
+            const colorValue = "#fff"; 
+            callback(colorValue);
+        });
     }
 
-    listenerUseEraser(callback) {
-        this.eraser.addEventListener("click", (e) => {
-            const colorValue ="#fff";
-            callback(colorValue);
-            
-        }); 
+    listenerUseBrush(callback) {
+        this.brush.addEventListener("click", () => {
+            callback(this.prevColor); 
+        });
     }
+    
 
     listenerStartDrawing(callback) {
         this.canvas.addEventListener("mousedown", (e) => {
@@ -49,23 +53,25 @@ export default class view {
             colorOption.addEventListener("click", (e) => {
                 const colorValue = colorOption.dataset.color;
                 callback(colorValue);
-                console.log(colorValue);
+                this.prevColor = colorValue;
             });
         });
     }
     
     listenBrushSizeChange(callback){
         this.brushSize.addEventListener("change",callback)
+        this.brush.addEventListener("click",callback)
     }
     
     listenEraserSizeChange(callback){
         this.eraserSize.addEventListener("change",callback)
+        this.eraser.addEventListener("click",callback)
     }
 
-    get BrushSizeValue(){
+    get brushSizeValue(){
       return this.brushSize.value
     }
-    get EraserSizeValue(){
+    get eraserSizeValue(){
       return this.eraserSize.value
     }
 }

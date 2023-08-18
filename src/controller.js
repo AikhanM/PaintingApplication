@@ -1,15 +1,19 @@
-export default class controller {
+export default class Controller {
     constructor(view, model) {
         this.view = view;
         this.model = model;
-
+    }
+    init(){
+        this.viewAllListeners()
+    }
+    viewAllListeners(){
         this.view.listenBrushSizeChange(() => {
-            const brushSizeValue = this.view.BrushSizeValue;
+            const brushSizeValue = this.view.brushSizeValue;
             this.model.changeBrushSize(brushSizeValue);
         });
 
         this.view.listenEraserSizeChange(() => {
-            const eraserSizeValue = this.view.EraserSizeValue;
+            const eraserSizeValue = this.view.eraserSizeValue;
             this.model.changeEraserSize(eraserSizeValue);
         });
 
@@ -27,13 +31,15 @@ export default class controller {
             this.model.stopPath(this.view.ctx);
         });
 
-        this.view.listenerUseEraser((color) => {
-           this.model.setColor(color)
+        this.view.listenerUseBrush((prevColor) => {
+            this.model.setColor(prevColor);
         });
-
+        
+        this.view.listenerUseEraser((color) => {
+            this.model.useEraser(color);
+        });
         this.view.listenColorSelect((color) => {
             this.model.setColor(color);
         });
     }
-    
 }
