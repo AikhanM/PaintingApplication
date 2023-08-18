@@ -6,6 +6,7 @@ export default class Model {
         this.color = "#000";
         this.prevColor="#000"
         this.lineWidth = 5;
+   
     }
 
     startPath(e, ctx) {
@@ -27,7 +28,7 @@ export default class Model {
     setColor(color) {
         this.color = color;
     }
-    
+
     useEraser(color) {
         this.prevColor = this.color; 
         this.color = color;
@@ -45,6 +46,7 @@ export default class Model {
             ctx.lineCap = "round";
             ctx.stroke();
             ctx.closePath();
+            ctx.beginPath();
             this.prevMouseX = nextMouseX;
             this.prevMouseY = nextMouseY;
         }
@@ -58,4 +60,5 @@ export default class Model {
         this.lineWidth=data
         return this.lineWidth
     }
+  
 }

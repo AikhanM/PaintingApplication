@@ -68,7 +68,7 @@ export default class View {
         this.eraser.addEventListener("click",callback)
     }
 
-    get brushSizeValue(){
+    get BrushSizeValue(){
       return this.brushSize.value
     }
     get eraserSizeValue(){
